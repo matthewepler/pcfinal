@@ -1,7 +1,7 @@
 import peasy.*;
 PeasyCam cam;
 
-float boxSize, halfBox;
+float boxSize, halfBox, barWidth;
 float rotation = 0;
 
 void setup(){
@@ -11,6 +11,7 @@ void setup(){
   
  boxSize = width / 20;
  halfBox = boxSize / 2;
+ barWidth = 5;
  
  smooth();
  
@@ -23,17 +24,7 @@ void draw(){
   strokeWeight( 1 );
  
   Cube newCube = new Cube();
-  for( int i = 1; i < 15; i ++ )
-  {
-    rotateX( rotation );
-    rotateY( rotation );
-    rotateZ( rotation );
-    
-    newCube.drawRefs();
-    
-    rotation += ( HALF_PI / i ) * 0.25;
-  }
-  
-  rotation = 0;
+  newCube.drawRefs();
+  newCube.drawAllBoxEdges();
 
 }

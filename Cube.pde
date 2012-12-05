@@ -84,6 +84,35 @@ class Cube
 }
 
 
+void drawAllBoxEdges() 
+{
+ pushMatrix();
+  translate( A.x, A.y, A.z );
+  translate( halfBox, 0, 0 );
+  box( boxSize + barWidth, barWidth, barWidth );
+ popMatrix();
+ 
+ pushMatrix();
+  translate( B.x, B.y, B.z );
+  translate( 0, 0, -halfBox );
+  box( barWidth, barWidth, boxSize + barWidth );
+ popMatrix();
+ 
+ pushMatrix();
+  translate( C.x, C.y, C.z );
+  translate( -halfBox, 0, 0 );
+  box( boxSize + barWidth, barWidth, barWidth );
+ popMatrix();
+ 
+ pushMatrix();
+  translate( D.x, D.y, D.z );
+  translate( 0, 0, halfBox );
+  box( barWidth, barWidth, boxSize + barWidth );
+ popMatrix();
+  
+}
+
+
 
  void drawRefs()  
  {
