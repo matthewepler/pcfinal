@@ -24,7 +24,7 @@ public class epler_printing_code_final_noPGraphics extends PApplet {
 PeasyCam cam;
 ArrayList<Cube> cubes = new ArrayList();
 
-float boxSize, halfBox, barWidth, levels;
+float boxSize, halfBox, barWidth, tDimension;
 int cubeCounter = 0;
 
 public void setup(){
@@ -35,7 +35,7 @@ public void setup(){
  boxSize = width / 20;
  halfBox = boxSize / 2;
  barWidth = 2;
- levels = 2;
+ tDimension = 3;
  
  fill( 255 );
  noStroke();
@@ -43,71 +43,28 @@ public void setup(){
  smooth();
 
 
- for( int i = 1; i < levels + 1; i++ ) 		 // generate cubes one vertical level at a time
+ for( int y = 1; y < tDimension + 1; y++ ) 		 // generate cubes one vertical level at a time
  {
- 	Cube nextLevelCenter = new Cube( 12, 0, boxSize * -1 * i, 0 );
- 	cubes.add( nextLevelCenter );
- 	cubeCounter += 1;
-
- 	int cubeNum = floor( random( 3, 6 ) ); // number of cubes on this level
-	
- 	for( int j = 0; j < cubeNum; j++ )     				
- 	{	
- 		int direction;
-
- 		Cube lastCube = cubes.get( cubeCounter - 1 ); 	// reference the last cube for position
- 		
- 		ArrayList openSides = new ArrayList();			// fill up an array with possible directions
- 		for( int k = 1; k < 5; k++ )
+ 	for( int x = 0; x < tDimension + 1; x++ )
+ 	{
+ 		for( int z = 0; z < tDimension + 1; z++ )
  		{
- 			Value optionValue = new Value( k );
- 			openSides.add( optionValue );
- 		}
-
- 		if( lastCube.neighbors.size() > 0 )							// if the last cube has at least one neighbor...
- 		{
- 		  for( int m = 0; m < lastCube.neighbors.size(); m++)		// look at all its neighbor values
- 		  {
- 		  	Value thisValue = (Value) lastCube.neighbors.get( m );
- 		  	for(int n = 0; n < openSides.size(); n++ )				// remove neighbor values from possible options
- 		  	{
- 		  		Value optionValue = (Value) openSides.get( n );
- 		  		if( optionValue.num == thisValue.num )
- 		  		{
- 		  			openSides.remove( optionValue );
- 		  		}
- 		  	}
- 		  }
-
- 		  int optionPicker = floor( random( 0, openSides.size() ) ); 	// from the available options left, pick one
- 		  Value directionValue = (Value) openSides.get( optionPicker ); // get that corresponding number so we can pass it
- 		  direction = directionValue.num;  								// 1 = left, 2 = right, 3 = back
- 		  addCube( direction, i, cubeCounter );
-
- 		} else {
- 			direction = floor( random( 1, 4 ) ); // pick any direction 
-			addCube( direction, i, cubeCounter );
+ 			Cube newCube = new Cube( 3, x * boxSize * 2, y * boxSize * 2 * -1, z * boxSize * 2 );
+ 			cubes.add( newCube );
  		}
  	}
- }
- for( int i = 0; i < cubes.size(); i++ )
- {
- 	Cube thisCube = cubes.get( i );
- 	println(thisCube.posX + ", " + thisCube.posY + ", " + thisCube.posZ );
- }
+}
 }
 
 
 public void draw()
 {
  background( 15 );
- println( cubes.size() );
  
   for( int i = 0; i < cubes.size(); i++ )
   {
     Cube thisCube = cubes.get( i );
     thisCube.render();
-    text(i, thisCube.posX, thisCube.posY, thisCube.posZ );
   }
 }
 
