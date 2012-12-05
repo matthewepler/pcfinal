@@ -17,7 +17,8 @@ void setup(){
  
 }
 
-void draw(){
+void draw()
+{
  
   background( 15 );
   noFill();

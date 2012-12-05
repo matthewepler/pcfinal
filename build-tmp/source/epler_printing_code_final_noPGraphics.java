@@ -39,7 +39,8 @@ public void setup(){
  
 }
 
-public void draw(){
+public void draw()
+{
  
   background( 15 );
   noFill();
@@ -186,6 +187,31 @@ public void drawAllBoxEdges()
   translate( H.x, H.y, H.z );
   translate( 0, 0, halfBox );
   box( barWidth, barWidth, boxSize + barWidth );
+ popMatrix();
+
+ /*-------------------------------------------- VERTICAL EDGES */
+ pushMatrix();
+  translate( E.x, E.y, E.z );
+  translate( 0, -halfBox, 0 );
+  box( barWidth, boxSize + barWidth, barWidth );
+ popMatrix();
+ 
+ pushMatrix();
+  translate( F.x, F.y, F.z );
+  translate( 0, -halfBox, 0 );
+  box( barWidth, boxSize + barWidth, barWidth );
+ popMatrix();
+ 
+ pushMatrix();
+  translate( G.x, G.y, G.z );
+  translate( 0, -halfBox, 0 );
+  box( barWidth, boxSize + barWidth, barWidth );
+ popMatrix();
+ 
+ pushMatrix();
+  translate( H.x, H.y, H.z );
+  translate( 0, -halfBox, 0 );
+  box( barWidth, boxSize + barWidth, barWidth );
  popMatrix();
   
 }
