@@ -21,16 +21,18 @@ void setup(){
  smooth();
 
 
- for( int i = 0; i < levels + 1; i++ ) 		  			// generate cubes one vertical level at a time
+ for( int i = 1; i < levels + 1; i++ ) 		  			// generate cubes one vertical level at a time
  {
+ 	println("i = " + i);
  	Cube nextLevelCenter = new Cube( 12, 0, boxSize * -1 * i, 0 );
  	cubes.add( nextLevelCenter );
  	cubeCounter += 1;
 
- 	int ranNum = floor( random( 8, 13 ) / ( i * 1.5 ) ); // number of cubes on this level
+ 	int ranNum = floor( random( 60, 100 ) ); // number of cubes on this level
 	
- 	for( int j = 0; i < ranNum; j++ )     				
+ 	for( int j = 0; j < ranNum; j++ )     				
  	{	
+ 		println("j = " + j);
  		int direction;
 
  		Cube lastCube = cubes.get( cubeCounter - 1 ); 		// reference the last cube for position
@@ -38,6 +40,7 @@ void setup(){
  		ArrayList openSides = new ArrayList();		// fill up an array with possible directions
  		for( int k = 1; k < 5; k++ )
  		{
+ 			println("k = " + k);
  			Value optionValue = new Value( k );
  			openSides.add( optionValue );
  		}
@@ -46,9 +49,11 @@ void setup(){
  		{
  		  for( int m = 0; m < lastCube.neighbors.size(); m++)
  		  {
+ 		  	println("m = " + m);
  		  	Value thisValue = (Value) lastCube.neighbors.get( m );
  		  	for(int n = 0; n < openSides.size(); n++ )
  		  	{
+ 		  		println("n = " + n);
  		  		Value optionValue = (Value) openSides.get( n );
  		  		if( optionValue.num == thisValue.num )
  		  		{
@@ -61,39 +66,44 @@ void setup(){
  		  Value directionValue = (Value) openSides.get( optionPicker );
  		  direction = directionValue.num;
                   // 1 = left, 2 = right, 3 = back, 4 = front
- 		  addCube( direction, cubeCounter );
+ 		  addCube( direction, cubeCounter - 1 );
                   println( "added cube with direction " + direction );
                   println( "cubeCounter = " + cubeCounter );
 
  		} else {
  			direction = floor( random( 1, 5 ) ); 		// pick a direction relative to last cube. 
 			// 1 = left, 2 = right, 3 = back, 4 = front
-			addCube( direction, cubeCounter );
+			addCube( direction, cubeCounter - 1 );
                         println("added free cube" );
                         println( "cubeCounter = " + cubeCounter );
  		}
  	}
+ }
+ for( int i = 0; i < cubes.size(); i++ )
+ {
+ 	Cube thisCube = cubes.get( i );
+ 	println(thisCube.posX + ", " + thisCube.posY + ", " + thisCube.posZ );
  }
 }
 
 
 void draw()
 {
- background( 15 );
- println( cubes.size() );
+ // background( 15 );
+ // println( cubes.size() );
  
-  for( int i = 0; i < cubes.size(); i++ )
-  {
-    Cube thisCube = cubes.get( i );
-    thisCube.render();
-  }
+ //  for( int i = 0; i < cubes.size(); i++ )
+ //  {
+ //    Cube thisCube = cubes.get( i );
+ //    thisCube.render();
+ //  }
 }
 
 
 void addCube( int _i, int _counter ) 
 {
     println( "addCube initiated" );
-    Cube lastCube = cubes.get( _counter - 1 );
+    Cube lastCube = cubes.get( _counter );
     Cube newCube = new Cube();
     Value thisValue;
     
