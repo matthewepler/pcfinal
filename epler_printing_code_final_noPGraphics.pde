@@ -1,5 +1,6 @@
 import peasy.*;
 PeasyCam cam;
+ArrayList<Cube> cubes = new ArrayList();
 
 float boxSize, halfBox, barWidth;
 float rotation = 0;
@@ -13,19 +14,23 @@ void setup(){
  halfBox = boxSize / 2;
  barWidth = 5;
  
+ noFill();
+ stroke( 255 );
+ strokeWeight( 1 );
  smooth();
  
+ Cube newCube = new Cube( 6 );
+ cubes.add( newCube );
 }
+
 
 void draw()
 {
+ background( 15 );
  
-  background( 15 );
-  noFill();
-  strokeWeight( 1 );
- 
-  Cube newCube = new Cube();
-  newCube.drawRefs();
-  newCube.drawEdges(12);
-
+  for( int i = 0; i < cubes.size(); i++ )
+  {
+    Cube thisCube = cubes.get( i );
+    thisCube.drawEdges();
+  }
 }
