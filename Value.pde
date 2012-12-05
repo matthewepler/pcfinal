@@ -6,7 +6,4 @@ class Value
   {
     num = _i;
   }
-  
-
-
 }

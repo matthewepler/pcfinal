@@ -1,3 +1,55 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.opengl.*; 
+
+import peasy.*; 
+
+import java.applet.*; 
+import java.awt.Dimension; 
+import java.awt.Frame; 
+import java.awt.event.MouseEvent; 
+import java.awt.event.KeyEvent; 
+import java.awt.event.FocusEvent; 
+import java.awt.Image; 
+import java.io.*; 
+import java.net.*; 
+import java.text.*; 
+import java.util.*; 
+import java.util.zip.*; 
+import java.util.regex.*; 
+
+public class epler_printing_code_final_noPGraphics extends PApplet {
+
+
+PeasyCam cam;
+
+float boxSize, halfBox, barWidth;
+float rotation = 0;
+
+public void setup(){
+ size( 495, 765, P3D  );
+ translate( width / 2, height / 2, 0 );
+ cam = new PeasyCam(this, 100);
+  
+ boxSize = width / 20;
+ halfBox = boxSize / 2;
+ barWidth = 5;
+ 
+ smooth();
+ 
+}
+
+public void draw(){
+ 
+  background( 15 );
+  noFill();
+  strokeWeight( 1 );
+ 
+  Cube newCube = new Cube();
+  newCube.drawRefs();
+  newCube.drawAllBoxEdges();
+
+}
 class Cube 
 {
   
@@ -26,7 +78,7 @@ class Cube
 
 // ----------------------------------------------- FUNCTIONS //
 
-   void setVectors() 
+   public void setVectors() 
  {
   center = new PVector( 0, 0, 0 );
 // --------------------------------------------- Top //
@@ -43,7 +95,7 @@ class Cube
  
  
  
-  void resetArrayList()
+  public void resetArrayList()
  {
   if( edges.size() > 0 )
     {
@@ -59,7 +111,7 @@ class Cube
 
 
 
- void drawLines( int _i )
+ public void drawLines( int _i )
  {
   switch( _i )
   {
@@ -84,7 +136,7 @@ class Cube
 }
 
 
-void drawAllBoxEdges() 
+public void drawAllBoxEdges() 
 {
  /*----------------------------------------------- TOP EDGES */
  pushMatrix();
@@ -140,7 +192,7 @@ void drawAllBoxEdges()
 
 
 
- void drawRefs()  
+ public void drawRefs()  
  {
   // ------------------------------------ XYZ Guides //
   stroke( 255, 0, 0 );
@@ -154,4 +206,22 @@ void drawAllBoxEdges()
   box( boxSize );
  }
   
+}
+class Value
+{
+  int num;
+
+  Value ( int _i )
+  {
+    num = _i;
+  }
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "epler_printing_code_final_noPGraphics" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
