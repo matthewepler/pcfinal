@@ -6,8 +6,13 @@ class Cube
  int[] edges;
  int edgeCount;
  float posX, posY, posZ;
+ ArrayList neighbors = new ArrayList();
  
- // ---------------------------------------------- CONSTRUCTOR //
+ // ---------------------------------------------- CONSTRUCTORS //
+ Cube() 
+ {
+ }
+ 
  Cube ( int _edgeCount, float _x, float _y, float _z ) 
  {
   edgeCount = _edgeCount;
