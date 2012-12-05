@@ -12,15 +12,20 @@ void setup(){
   
  boxSize = width / 20;
  halfBox = boxSize / 2;
- barWidth = 5;
+ barWidth = 2;
  
- noFill();
- stroke( 255 );
+ fill( 255 );
+ noStroke();
  strokeWeight( 1 );
  smooth();
  
- Cube newCube = new Cube( 6 );
- cubes.add( newCube );
+ for( int i = 0; i < 3; i++ )
+ {
+ 	Cube newCube = new Cube( 12, 0, 0, i * boxSize );
+ 	cubes.add( newCube );
+	Cube newCube2 = new Cube( 12, 0, 0, i * boxSize * -1 );
+	cubes.add( newCube2 );
+ }
 }
 
 
@@ -31,6 +36,6 @@ void draw()
   for( int i = 0; i < cubes.size(); i++ )
   {
     Cube thisCube = cubes.get( i );
-    thisCube.drawEdges();
+    thisCube.render();
   }
 }

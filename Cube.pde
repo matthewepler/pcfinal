@@ -5,13 +5,16 @@ class Cube
  ArrayList edgeValues = new ArrayList();
  int[] edges;
  int edgeCount;
- boolean drawn = false;
+ float posX, posY, posZ;
  
  // ---------------------------------------------- CONSTRUCTOR //
- Cube ( int _edgeCount ) 
+ Cube ( int _edgeCount, float _x, float _y, float _z ) 
  {
   edgeCount = _edgeCount;
   edges = new int[ edgeCount ];
+  posX = _x;
+  posY = _y;
+  posZ = _z;
   setVectors();
   setEdges();
  }
@@ -35,12 +38,15 @@ void setVectors()
  }
 
 
-void drawEdges()
+void render()
 {
-  for( int i = 0; i < edges.length; i++ )
-  {
-    drawSingleEdge( edges[i] );
-  }
+  pushMatrix();
+    translate( posX, posY, posZ );
+    for( int i = 0; i < edges.length; i++ )
+    {
+      drawSingleEdge( edges[i] );
+    }
+  popMatrix();
 }
  
  
