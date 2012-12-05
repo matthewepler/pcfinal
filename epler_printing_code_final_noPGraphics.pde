@@ -26,6 +26,6 @@ void draw()
  
   Cube newCube = new Cube();
   newCube.drawRefs();
-  newCube.drawAllBoxEdges();
+  newCube.drawEdges(12);
 
 }

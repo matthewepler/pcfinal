@@ -84,83 +84,185 @@ class Cube
 }
 
 
-void drawAllBoxEdges() 
+void drawEdges( int _i ) 
 {
- /*----------------------------------------------- TOP EDGES */
- pushMatrix();
-  translate( A.x, A.y, A.z );
-  translate( halfBox, 0, 0 );
-  box( boxSize + barWidth, barWidth, barWidth );
- popMatrix();
- 
- pushMatrix();
-  translate( B.x, B.y, B.z );
-  translate( 0, 0, -halfBox );
-  box( barWidth, barWidth, boxSize + barWidth );
- popMatrix();
- 
- pushMatrix();
-  translate( C.x, C.y, C.z );
-  translate( -halfBox, 0, 0 );
-  box( boxSize + barWidth, barWidth, barWidth );
- popMatrix();
- 
- pushMatrix();
-  translate( D.x, D.y, D.z );
-  translate( 0, 0, halfBox );
-  box( barWidth, barWidth, boxSize + barWidth );
- popMatrix();
- 
- /*-------------------------------------------- BOTTOM EDGES */
- pushMatrix();
-  translate( E.x, E.y, E.z );
-  translate( halfBox, 0, 0 );
-  box( boxSize + barWidth, barWidth, barWidth );
- popMatrix();
- 
- pushMatrix();
-  translate( F.x, F.y, F.z );
-  translate( 0, 0, -halfBox );
-  box( barWidth, barWidth, boxSize + barWidth );
- popMatrix();
- 
- pushMatrix();
-  translate( G.x, G.y, G.z );
-  translate( -halfBox, 0, 0 );
-  box( boxSize + barWidth, barWidth, barWidth );
- popMatrix();
- 
- pushMatrix();
-  translate( H.x, H.y, H.z );
-  translate( 0, 0, halfBox );
-  box( barWidth, barWidth, boxSize + barWidth );
- popMatrix();
-
- /*-------------------------------------------- VERTICAL EDGES */
- pushMatrix();
-  translate( E.x, E.y, E.z );
-  translate( 0, -halfBox, 0 );
-  box( barWidth, boxSize + barWidth, barWidth );
- popMatrix();
- 
- pushMatrix();
-  translate( F.x, F.y, F.z );
-  translate( 0, -halfBox, 0 );
-  box( barWidth, boxSize + barWidth, barWidth );
- popMatrix();
- 
- pushMatrix();
-  translate( G.x, G.y, G.z );
-  translate( 0, -halfBox, 0 );
-  box( barWidth, boxSize + barWidth, barWidth );
- popMatrix();
- 
- pushMatrix();
-  translate( H.x, H.y, H.z );
-  translate( 0, -halfBox, 0 );
-  box( barWidth, boxSize + barWidth, barWidth );
- popMatrix();
+  switch( _i )
+  {
+   /*----------------------------------------------- TOP EDGES */
+   case 0:
+   pushMatrix();
+    translate( A.x, A.y, A.z );
+    translate( halfBox, 0, 0 );
+    box( boxSize + barWidth, barWidth, barWidth );
+   popMatrix();
+   break;
   
+   case 1:
+   pushMatrix();
+    translate( B.x, B.y, B.z );
+    translate( 0, 0, -halfBox );
+    box( barWidth, barWidth, boxSize + barWidth );
+   popMatrix();
+   break;
+  
+   case 2:
+   pushMatrix();
+    translate( C.x, C.y, C.z );
+    translate( -halfBox, 0, 0 );
+    box( boxSize + barWidth, barWidth, barWidth );
+   popMatrix();
+   break;
+  
+   case 3:
+   pushMatrix();
+    translate( D.x, D.y, D.z );
+    translate( 0, 0, halfBox );
+    box( barWidth, barWidth, boxSize + barWidth );
+   popMatrix();
+   break;
+   
+   /*-------------------------------------------- BOTTOM EDGES */
+   case 4:
+   pushMatrix();
+    translate( E.x, E.y, E.z );
+    translate( halfBox, 0, 0 );
+    box( boxSize + barWidth, barWidth, barWidth );
+   popMatrix();
+   break;
+  
+   case 5:
+   pushMatrix();
+    translate( F.x, F.y, F.z );
+    translate( 0, 0, -halfBox );
+    box( barWidth, barWidth, boxSize + barWidth );
+   popMatrix();
+   break;
+  
+   case 6:
+   pushMatrix();
+    translate( G.x, G.y, G.z );
+    translate( -halfBox, 0, 0 );
+    box( boxSize + barWidth, barWidth, barWidth );
+   popMatrix();
+   break;
+  
+   case 7:
+   pushMatrix();
+    translate( H.x, H.y, H.z );
+    translate( 0, 0, halfBox );
+    box( barWidth, barWidth, boxSize + barWidth );
+   popMatrix();
+   break;
+  
+   /*-------------------------------------------- VERTICAL EDGES */
+   case 8:
+   pushMatrix();
+    translate( E.x, E.y, E.z );
+    translate( 0, -halfBox, 0 );
+    box( barWidth, boxSize + barWidth, barWidth );
+   popMatrix();
+   break;
+  
+   case 9:
+   pushMatrix();
+    translate( F.x, F.y, F.z );
+    translate( 0, -halfBox, 0 );
+    box( barWidth, boxSize + barWidth, barWidth );
+   popMatrix();
+   break;
+  
+   case 10:
+   pushMatrix();
+    translate( G.x, G.y, G.z );
+    translate( 0, -halfBox, 0 );
+    box( barWidth, boxSize + barWidth, barWidth );
+   popMatrix();
+   break;
+  
+   case 11:
+   pushMatrix();
+    translate( H.x, H.y, H.z );
+    translate( 0, -halfBox, 0 );
+    box( barWidth, boxSize + barWidth, barWidth );
+   popMatrix();
+   break;
+  
+   case 12: // draw all edges
+   pushMatrix();
+    translate( A.x, A.y, A.z );
+    translate( halfBox, 0, 0 );
+    box( boxSize + barWidth, barWidth, barWidth );
+   popMatrix();
+  
+   pushMatrix();
+    translate( B.x, B.y, B.z );
+    translate( 0, 0, -halfBox );
+    box( barWidth, barWidth, boxSize + barWidth );
+   popMatrix();
+  
+   pushMatrix();
+    translate( C.x, C.y, C.z );
+    translate( -halfBox, 0, 0 );
+    box( boxSize + barWidth, barWidth, barWidth );
+   popMatrix();
+  
+   pushMatrix();
+    translate( D.x, D.y, D.z );
+    translate( 0, 0, halfBox );
+    box( barWidth, barWidth, boxSize + barWidth );
+   popMatrix();
+   
+   /*-------------------------------------------- BOTTOM EDGES */
+   pushMatrix();
+    translate( E.x, E.y, E.z );
+    translate( halfBox, 0, 0 );
+    box( boxSize + barWidth, barWidth, barWidth );
+   popMatrix();
+  
+   pushMatrix();
+    translate( F.x, F.y, F.z );
+    translate( 0, 0, -halfBox );
+    box( barWidth, barWidth, boxSize + barWidth );
+   popMatrix();
+  
+   pushMatrix();
+    translate( G.x, G.y, G.z );
+    translate( -halfBox, 0, 0 );
+    box( boxSize + barWidth, barWidth, barWidth );
+   popMatrix();
+  
+   pushMatrix();
+    translate( H.x, H.y, H.z );
+    translate( 0, 0, halfBox );
+    box( barWidth, barWidth, boxSize + barWidth );
+   popMatrix();
+  
+  
+   /*-------------------------------------------- VERTICAL EDGES */
+   pushMatrix();
+    translate( E.x, E.y, E.z );
+    translate( 0, -halfBox, 0 );
+    box( barWidth, boxSize + barWidth, barWidth );
+   popMatrix();
+   
+   pushMatrix();
+    translate( F.x, F.y, F.z );
+    translate( 0, -halfBox, 0 );
+    box( barWidth, boxSize + barWidth, barWidth );
+   popMatrix();
+  
+   pushMatrix();
+    translate( G.x, G.y, G.z );
+    translate( 0, -halfBox, 0 );
+    box( barWidth, boxSize + barWidth, barWidth );
+   popMatrix();
+   
+   pushMatrix();
+    translate( H.x, H.y, H.z );
+    translate( 0, -halfBox, 0 );
+    box( barWidth, boxSize + barWidth, barWidth );
+   popMatrix(); break;
+   } // end of switch
 }
 
 
