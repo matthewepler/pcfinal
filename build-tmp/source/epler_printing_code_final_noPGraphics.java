@@ -3,6 +3,7 @@ import processing.data.*;
 import processing.opengl.*; 
 
 import peasy.*; 
+import controlP5.*; 
 
 import java.applet.*; 
 import java.awt.Dimension; 
@@ -23,6 +24,9 @@ public class epler_printing_code_final_noPGraphics extends PApplet {
 
 PeasyCam cam;
 
+ControlP5 controlP5;
+ControlWindow controlWindow;
+
 ArrayList<Cube> cubes = new ArrayList();
 float boxSize, halfBox, barWidth;
 int tDimension, spacer, sides;
@@ -33,7 +37,8 @@ public void setup(){
  //translate( width / 2, height / 2, 0 );
  cam = new PeasyCam(this, 100);
  ortho( -width/2, width/2, height/2, -height/2, -1000, 1000 );
-  
+ initControls();
+
  boxSize = width / 30;
  halfBox = boxSize / 2;
  barWidth = 0.5f;
@@ -41,7 +46,9 @@ public void setup(){
  spacer = 4;
  sides = 3;
 
- cam.lookAt( ((boxSize * tDimension) + (boxSize * spacer)), ((boxSize * tDimension) + (boxSize * spacer)) * -1, ((boxSize * tDimension) + (boxSize * spacer)) );
+ cam.lookAt( ((boxSize * tDimension) + (boxSize * spacer)), 
+ 			 ((boxSize * tDimension) + (boxSize * spacer)) * -1,
+		 	 ((boxSize * tDimension) + (boxSize * spacer)) );
  
  fill( 255 );
  noStroke();
@@ -71,6 +78,24 @@ public void draw()
     Cube thisCube = cubes.get( i );
     thisCube.render();
   }
+}
+
+
+
+public void initControls()
+{
+  controlP5 = new ControlP5(this);
+  ControlWindow cw = controlP5.addControlWindow("MAIN CONTROLS",330,430);
+  cw.setLocation(10,10);
+  ControlGroup variables = controlP5.addGroup("Variables",30,30);
+  variables.moveTo(cw);
+
+  controlP5.begin(variables,0,10);
+
+  controlP5.addSlider("boxSize", 0, width/4 ).linebreak();
+  controlP5.addSlider("barWidth", 0, 6 ).linebreak();
+
+  controlP5.end();  
 }
 class Cube 
 {
