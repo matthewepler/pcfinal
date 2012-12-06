@@ -200,8 +200,8 @@ void drawSingleEdge( int _i )
   stroke( 0, 0, 255 );
   line( 0, 0, 0, 0, 0, 25 );
   // --------------------------------------- Ref Box //
-  stroke( 255 );
-  box( boxSize );
+  // stroke( 255 );
+  // box( boxSize );
  }
   
 }

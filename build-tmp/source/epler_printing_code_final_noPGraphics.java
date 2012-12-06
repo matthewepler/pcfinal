@@ -33,39 +33,28 @@ int tDimension, spacer, sides;
 float middleX;
 
 public void setup(){
- size( 495, 765, P3D  );
+ size( 800, 800, P3D  );
  //translate( width / 2, height / 2, 0 );
  cam = new PeasyCam(this, 100);
  ortho( -width/2, width/2, height/2, -height/2, -1000, 1000 );
  initControls();
 
- boxSize = width / 30;
+ boxSize = width / 40;
  halfBox = boxSize / 2;
  barWidth = 0.5f;
  tDimension = 5;
  spacer = 4;
  sides = 3;
 
- cam.lookAt( ((boxSize * tDimension) + (boxSize * spacer)), 
- 			 ((boxSize * tDimension) + (boxSize * spacer)) * -1,
-		 	 ((boxSize * tDimension) + (boxSize * spacer)) );
- 
  fill( 255 );
  noStroke();
- strokeWeight( 1 );
  smooth();
 
- for( int y = 0; y < tDimension; y++ ) 		 // generate cubes one vertical level at a time
- {
- 	for( int x = 0; x < tDimension; x++ )
- 	{
- 		for( int z = 0; z < tDimension; z++ )
- 		{
- 			Cube newCube = new Cube( sides, x * boxSize * spacer, y * boxSize * spacer * -1, z * boxSize * spacer );
- 			cubes.add( newCube );
- 		}
- 	}
- }
+ generateCubes();
+ int half = (int) cubes.size()/2;
+ Cube center = cubes.get( half );
+
+ cam.lookAt( center.posX, center.posY, center.posZ );
 }
 
 
@@ -80,6 +69,21 @@ public void draw()
   }
 }
 
+
+public void generateCubes()
+{
+	for( int y = 0; y < tDimension; y++ ) 		 // generate cubes one vertical level at a time
+ 	{
+	 	for( int x = 0; x < tDimension; x++ )
+	 	{
+	 		for( int z = 0; z < tDimension; z++ )
+	 		{
+	 			Cube newCube = new Cube( sides, x * boxSize * spacer, y * boxSize * spacer * -1, z * boxSize * spacer );
+	 			cubes.add( newCube );
+	 		}
+	 	}
+ 	}
+}
 
 
 public void initControls()
@@ -299,8 +303,8 @@ public void drawSingleEdge( int _i )
   stroke( 0, 0, 255 );
   line( 0, 0, 0, 0, 0, 25 );
   // --------------------------------------- Ref Box //
-  stroke( 255 );
-  box( boxSize );
+  // stroke( 255 );
+  // box( boxSize );
  }
   
 }
