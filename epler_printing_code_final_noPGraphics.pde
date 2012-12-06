@@ -55,7 +55,9 @@ void generateCubes()
 	 	{
 	 		for( int z = 0; z < tDimension; z++ )
 	 		{
-	 			Cube newCube = new Cube( sides, x * boxSize * spacer, y * boxSize * spacer * -1, z * boxSize * spacer );
+	 			Cube newCube = new Cube( sides, x * boxSize * spacer, 
+	 											y * boxSize * spacer * -1, 
+	 											z * boxSize * spacer );
 	 			cubes.add( newCube );
 	 		}
 	 	}
