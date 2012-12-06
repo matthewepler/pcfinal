@@ -22,95 +22,55 @@ public class epler_printing_code_final_noPGraphics extends PApplet {
 
 
 PeasyCam cam;
-ArrayList<Cube> cubes = new ArrayList();
 
-float boxSize, halfBox, barWidth, tDimension;
-int cubeCounter = 0;
+ArrayList<Cube> cubes = new ArrayList();
+float boxSize, halfBox, barWidth;
+int tDimension, spacer, sides;
+float middleX;
 
 public void setup(){
  size( 495, 765, P3D  );
- translate( width / 2, height / 2, 0 );
+ //translate( width / 2, height / 2, 0 );
  cam = new PeasyCam(this, 100);
+ ortho( -width/2, width/2, height/2, -height/2, -1000, 1000 );
   
- boxSize = width / 20;
+ boxSize = width / 30;
  halfBox = boxSize / 2;
- barWidth = 2;
- tDimension = 3;
+ barWidth = 0.5f;
+ tDimension = 5;
+ spacer = 4;
+ sides = 3;
+
+ cam.lookAt( ((boxSize * tDimension) + (boxSize * spacer)), ((boxSize * tDimension) + (boxSize * spacer)) * -1, ((boxSize * tDimension) + (boxSize * spacer)) );
  
  fill( 255 );
  noStroke();
  strokeWeight( 1 );
  smooth();
 
-
- for( int y = 1; y < tDimension + 1; y++ ) 		 // generate cubes one vertical level at a time
+ for( int y = 0; y < tDimension; y++ ) 		 // generate cubes one vertical level at a time
  {
- 	for( int x = 0; x < tDimension + 1; x++ )
+ 	for( int x = 0; x < tDimension; x++ )
  	{
- 		for( int z = 0; z < tDimension + 1; z++ )
+ 		for( int z = 0; z < tDimension; z++ )
  		{
- 			Cube newCube = new Cube( 3, x * boxSize * 2, y * boxSize * 2 * -1, z * boxSize * 2 );
+ 			Cube newCube = new Cube( sides, x * boxSize * spacer, y * boxSize * spacer * -1, z * boxSize * spacer );
  			cubes.add( newCube );
  		}
  	}
-}
+ }
 }
 
 
 public void draw()
 {
  background( 15 );
- 
+
   for( int i = 0; i < cubes.size(); i++ )
   {
     Cube thisCube = cubes.get( i );
     thisCube.render();
   }
-}
-
-
-public void addCube( int _i, int _y, int _counter ) 
-{
-    Cube lastCube = cubes.get( _counter - 1 );
-    Cube newCube = new Cube();
-    Value thisValue;
-    float posY = _i * -1 * boxSize;
-    
-	switch( _i ){
-
-		case 1:
-		newCube = new Cube( 12, lastCube.posX - boxSize, posY, 0 );
-		thisValue = new Value( 2 );
-		newCube.neighbors.add( thisValue );
-		cubes.add( newCube );
-		cubeCounter += 1;
-		break;
-
-		case 2:
-		newCube = new Cube( 12, lastCube.posX + boxSize, posY, 0 );
-		thisValue = new Value( 1 );
-		newCube.neighbors.add( thisValue );
-		cubes.add( newCube );
-		cubeCounter += 1;
-		break;
-
-		case 3:
-		newCube = new Cube( 12, 0, posY, lastCube.posZ + boxSize );
-		thisValue = new Value( 4 );
-		newCube.neighbors.add( thisValue );
-		cubes.add( newCube );
-		cubeCounter += 1;
-		break;
-
-		case 4:
-		newCube = new Cube( 12, 0, posY, lastCube.posZ - boxSize );
-		thisValue = new Value( 3 );
-		newCube.neighbors.add( thisValue );
-		cubes.add( newCube );
-		cubeCounter += 1;
-		break;
-}
-
 }
 class Cube 
 {
