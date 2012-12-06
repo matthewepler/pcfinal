@@ -7,13 +7,14 @@ ControlWindow controlWindow;
 ArrayList<Cube> cubes = new ArrayList();
 float boxSize, halfBox, barWidth;
 int tDimension, spacer, sides;
-float middleX;
 
-void setup(){
+void setup()
+{
  size( 800, 800, P3D  );
- //translate( width / 2, height / 2, 0 );
- cam = new PeasyCam(this, 100);
+
+ cam = new PeasyCam(this, 100, 1, -1, 1);
  ortho( -width/2, width/2, height/2, -height/2, -1000, 1000 );
+ 
  initControls();
 
  boxSize = width / 40;
@@ -44,6 +45,13 @@ void draw()
     Cube thisCube = cubes.get( i );
     thisCube.render();
   }
+
+  float[] camPos = cam.getPosition();
+  float[] camRot = cam.getRotations();
+  float[] camCenter = cam.getLookAt();
+  println( "Position: " + camPos[0] + ", " + camPos[1] + ", " + camPos[2] );
+  println( "Rotation: " + camRot[0] + ", " + camRot[1] + ", " + camRot[2] );
+  println( "LookAt: " + camCenter[0] + ", " + camCenter[1] + ", " + camCenter[2] );
 }
 
 
